@@ -25,28 +25,16 @@
                 android:layout_height="100dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/normal_size"
+                android:layout_marginBottom="@dimen/normal_size"
                 android:scaleType="centerCrop"
                 android:src="@drawable/logo_main" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/actionbar_size"
-                android:layout_marginTop="30dp"
-                android:background="@drawable/backgroung_line"
-                android:paddingStart="@dimen/small_margin">
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_auth_lay"
                 style="@style/TextInputLayoutStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/left_right_margin_size"
+                android:layout_marginTop="@dimen/normal_size"
                 android:layout_marginBottom="@dimen/left_right_margin_size"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/default_text_color">

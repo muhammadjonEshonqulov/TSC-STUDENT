@@ -10,8 +10,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:transitionName="schedule_lesson_image"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:transitionName="schedule_lesson_image">
+
         <LinearLayout
             android:id="@+id/action_bar_profile"
             android:layout_width="match_parent"
@@ -25,7 +26,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="@dimen/left_right_margin_size"
+                android:layout_marginStart="@dimen/small_margin"
                 android:clipToPadding="true"
                 android:padding="7dp"
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"
@@ -36,13 +37,23 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="7dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/montserrat_medium"
-                android:padding="7dp"
                 android:text="Dars jadvali"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
+
+            <ImageView
+                android:id="@+id/rotate_90"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                android:padding="4dp"
+                android:src="@drawable/ic_baseline_rotate_90_degrees_ccw_24"
+                android:visibility="visible" />
 
         </LinearLayout>
 
@@ -63,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_medium"
-                    android:padding="@dimen/default_margin"
+                    android:padding="@dimen/small_margin"
                     android:text="101-19"
                     android:textColor="@color/black" />
 
@@ -72,14 +83,14 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/montserrat_medium"
-                    android:paddingBottom="@dimen/default_margin"
+                    android:paddingBottom="@dimen/small_margin"
                     android:text="Semestr"
                     android:textColor="@color/black" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/small_margin"
                     android:gravity="center">
 
                     <androidx.recyclerview.widget.RecyclerView
@@ -143,13 +154,14 @@
                     android:id="@+id/not_found_lesson"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:visibility="gone"
                     android:gravity="center">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="#50C4F8"
+                        app:cardBackgroundColor="@color/cl_color_primary"
                         app:cardCornerRadius="@dimen/default_margin">
 
                         <TextView

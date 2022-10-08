@@ -57,14 +57,14 @@
 
         </LinearLayout>
 
-        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/adView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            ads:adSize="LARGE_BANNER"
-            ads:adUnitId="ca-app-pub-7809559901245312/9864461009" />
+        <!--        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"-->
+        <!--            android:id="@+id/adView"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:visibility="gone"-->
+        <!--            ads:adSize="LARGE_BANNER"-->
+        <!--            ads:adUnitId="ca-app-pub-7809559901245312/9864461009" />-->
 
         <ScrollView
             android:layout_width="match_parent"
@@ -343,7 +343,6 @@
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/white"
                         app:cardCornerRadius="@dimen/small_margin"
@@ -361,22 +360,21 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/table_of_exams_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/actionbar_size"
-                                android:alpha="0.6"
                                 android:padding="@dimen/small_margin"
                                 android:src="@drawable/ic_baseline_grade_24"
-                                app:tint="#FFB2B2" />
+                                android:transitionName="table_of_exams_name" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/small_margin"
-                                android:alpha="0.6"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:gravity="center"
                                 android:padding="@dimen/small_margin"
-                                android:text="Imtihonlar jadvali"
+                                android:text="Nazoratlar jadvali"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>
@@ -470,9 +468,48 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+                    <!--                    <androidx.cardview.widget.CardView-->
+                    <!--                        android:layout_width="0dp"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_weight="1"-->
+                    <!--                        app:cardBackgroundColor="@color/white"-->
+                    <!--                        app:cardCornerRadius="@dimen/small_margin"-->
+                    <!--                        app:cardElevation="@dimen/small_margin"-->
+                    <!--                        app:cardUseCompatPadding="true">-->
+
+                    <!--                        <LinearLayout-->
+                    <!--                            android:id="@+id/home_works_of_lessons"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="match_parent"-->
+                    <!--                            android:layout_weight="1"-->
+                    <!--                            android:clickable="true"-->
+                    <!--                            android:focusable="true"-->
+                    <!--                            android:foreground="?selectableItemBackground"-->
+                    <!--                            android:orientation="vertical">-->
+
+                    <!--                            <ImageView-->
+                    <!--                                android:layout_width="match_parent"-->
+                    <!--                                android:layout_height="@dimen/actionbar_size"-->
+                    <!--                                android:alpha="0.6"-->
+                    <!--                                android:padding="@dimen/small_margin"-->
+                    <!--                                android:src="@drawable/ic_baseline_menu_book_24"-->
+                    <!--                                app:tint="#FFB2B2" />-->
+
+                    <!--                            <TextView-->
+                    <!--                                android:layout_width="match_parent"-->
+                    <!--                                android:layout_height="wrap_content"-->
+                    <!--                                android:layout_marginTop="@dimen/small_margin"-->
+                    <!--                                android:alpha="0.6"-->
+                    <!--                                android:fontFamily="@font/montserrat_medium"-->
+                    <!--                                android:gravity="center"-->
+                    <!--                                android:padding="@dimen/small_margin"-->
+                    <!--                                android:text="Fanlardan vazifalar"-->
+                    <!--                                android:textColor="@color/black" />-->
+
+                    <!--                        </LinearLayout>-->
+                    <!--                    </androidx.cardview.widget.CardView>-->
                     <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         app:cardBackgroundColor="@color/white"
@@ -481,7 +518,7 @@
                         app:cardUseCompatPadding="true">
 
                         <LinearLayout
-                            android:id="@+id/home_works_of_lessons"
+                            android:id="@+id/deadlines"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -491,22 +528,21 @@
                             android:orientation="vertical">
 
                             <ImageView
+                                android:id="@+id/deadlines_image"
                                 android:layout_width="match_parent"
                                 android:layout_height="@dimen/actionbar_size"
-                                android:alpha="0.6"
                                 android:padding="@dimen/small_margin"
-                                android:src="@drawable/ic_baseline_menu_book_24"
-                                app:tint="#FFB2B2" />
+                                android:src="@drawable/ic_baseline_notifications_active_24"
+                                android:transitionName="deadlines_image" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/small_margin"
-                                android:alpha="0.6"
                                 android:fontFamily="@font/montserrat_medium"
                                 android:gravity="center"
                                 android:padding="@dimen/small_margin"
-                                android:text="Fanlardan vazifalar"
+                                android:text="Deadlines"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>
@@ -594,57 +630,6 @@
                     </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:visibility="visible"
-                    android:weightSum="2">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        app:cardCornerRadius="@dimen/small_margin"
-                        app:cardElevation="@dimen/small_margin"
-                        app:cardUseCompatPadding="true">
-
-                        <LinearLayout
-                            android:id="@+id/deadlines"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?selectableItemBackground"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/actionbar_size"
-                                android:alpha="0.6"
-                                android:padding="@dimen/small_margin"
-                                android:src="@drawable/ic_baseline_notifications_active_24"
-                                app:tint="#FFB2B2" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/small_margin"
-                                android:fontFamily="@font/montserrat_medium"
-                                android:gravity="center"
-                                android:padding="@dimen/small_margin"
-                                android:text="Deadlines"
-                                android:textColor="@color/black" />
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-
             </LinearLayout>
         </ScrollView>
 

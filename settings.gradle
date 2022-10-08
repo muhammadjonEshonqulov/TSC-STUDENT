@@ -10,7 +10,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        jcenter()
+//        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "TSC JBNUU"
+rootProject.name = "TSC STUDENT"
 include ':app'

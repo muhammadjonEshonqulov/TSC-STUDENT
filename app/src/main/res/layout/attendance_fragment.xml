@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:transitionName="attendance_image"
     android:background="#ECF0F5"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionName="attendance_image">
 
     <LinearLayout
         android:id="@+id/action_bar_profile"
@@ -21,7 +21,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/left_right_margin_size"
+            android:layout_marginStart="@dimen/default_margin"
             android:clickable="true"
             android:clipToPadding="true"
             android:focusable="true"
@@ -42,6 +42,18 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
+        <ImageView
+            android:id="@+id/rotate_90"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:padding="4dp"
+            android:src="@drawable/ic_baseline_rotate_90_degrees_ccw_24"
+            android:visibility="visible" />
+
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -56,8 +68,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/group"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/montserrat_medium"
@@ -251,13 +263,14 @@
                 android:id="@+id/not_found_lesson"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center">
+                android:gravity="center"
+                android:visibility="gone">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    app:cardBackgroundColor="#50C4F8"
+                    app:cardBackgroundColor="@color/cl_color_primary"
                     app:cardCornerRadius="@dimen/default_margin">
 
                     <TextView

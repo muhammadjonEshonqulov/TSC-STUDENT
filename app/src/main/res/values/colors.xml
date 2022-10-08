@@ -10,6 +10,7 @@
     <color name="cl_color_accent">#EB5757</color>
     <color name="text_color">#17202B</color>
     <color name="default_text_color">#A09F9F</color>
+    <color name="back_grey">#7AC4FF</color>
     <color name="manager_chat_date_color">#ef4d27</color>
     <color name="n_color_accent">#EB5757</color>
     <color name="n_background">#202B33</color>
@@ -32,4 +33,5 @@
     <color name="green">#00A65A</color>
     <color name="items_color_0">#F2F2F2</color>
     <color name="items_color_1">#FFFFFF</color>
+    <color name="items_color_changed">#00BCD4</color>
 </resources>

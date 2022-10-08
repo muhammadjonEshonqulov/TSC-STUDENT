@@ -4,11 +4,16 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.16366906474820145" />
+        <entry key="../../.gradle/caches/transforms-3/859b576cca8147778c3f327d4197024c/transformed/core-1.9.0/res/drawable-v21/notification_action_background.xml" value="0.2335" />
+        <entry key="../../.gradle/caches/transforms-3/859b576cca8147778c3f327d4197024c/transformed/core-1.9.0/res/drawable/notification_bg.xml" value="0.2335" />
         <entry key="../../Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.17552083333333332" />
         <entry key="../../Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_item.xml" value="0.17552083333333332" />
         <entry key="app/src/main/res/drawable-v24/ic_baseline_arrow_back_ios_24.xml" value="0.2225" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/background_cell.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/backgroung_line.xml" value="0.302" />
+        <entry key="app/src/main/res/drawable/circle_progress_bar.xml" value="0.2335" />
+        <entry key="app/src/main/res/drawable/circle_shape.xml" value="0.2335" />
         <entry key="app/src/main/res/drawable/circle_status_color.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/ic_baseline_accessible_24.xml" value="0.302" />
         <entry key="app/src/main/res/drawable/ic_baseline_attach_money_24.xml" value="0.302" />
@@ -28,14 +33,21 @@
         <entry key="app/src/main/res/drawable/ic_baseline_notifications_active_24.xml" value="0.242" />
         <entry key="app/src/main/res/drawable/ic_baseline_other_houses_24.xml" value="0.302" />
         <entry key="app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.302" />
+        <entry key="app/src/main/res/drawable/ic_baseline_person_pin_circle_24.xml" value="0.2305" />
+        <entry key="app/src/main/res/drawable/ic_baseline_rotate_90_degrees_ccw_24.xml" value="0.2335" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2305" />
+        <entry key="app/src/main/res/drawable/ic_downloadsimple.xml" value="0.2335" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2225" />
         <entry key="app/src/main/res/drawable/ic_tsc2.xml" value="0.2225" />
+        <entry key="app/src/main/res/drawable/play_button_back.xml" value="0.2335" />
         <entry key="app/src/main/res/drawable/spinner_background.xml" value="0.242" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/admin_fragment.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/layout/admin_main_page.xml" value="0.33" />
         <entry key="app/src/main/res/layout/attendance_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/custom_spinner_item.xml" value="0.3541666666666667" />
+        <entry key="app/src/main/res/layout/deadlines_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/dialog_logut.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/dialog_wait.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.3541666666666667" />
@@ -44,7 +56,8 @@
         <entry key="app/src/main/res/layout/group_fragment.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/header_layout.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/item_attendance.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/item_group.xml" value="0.16" />
+        <entry key="app/src/main/res/layout/item_deadline.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/item_group.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_lesson.xml" value="0.33" />
         <entry key="app/src/main/res/layout/item_location_history.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/item_performance.xml" value="0.14" />
@@ -53,11 +66,13 @@
         <entry key="app/src/main/res/layout/item_spinner_login.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/item_student.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_time_table.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/item_tutor.xml" value="0.1" />
         <entry key="app/src/main/res/layout/location_history_fragment.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/login_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/performance_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/schedule_fragment.xml" value="0.3541666666666667" />
         <entry key="app/src/main/res/layout/semester_fragment.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/statistics_for_admin_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/student_fragment.xml" value="0.30298818624044477" />
         <entry key="app/src/main/res/layout/student_main_fragment.xml" value="0.33" />
         <entry key="app/src/main/res/layout/subject_fragment.xml" value="0.353125" />

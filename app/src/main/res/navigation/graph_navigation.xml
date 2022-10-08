@@ -7,65 +7,34 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="uz.jbnuu.tsc.ui.login.LoginFragment"
+        android:name="uz.jbnuu.tsc.student.ui.login.LoginFragment"
         android:label="AuthFragment"
         tools:layout="@layout/login_fragment">
         <action
-            android:id="@+id/action_loginFragment_to_tutorMainFragment"
-            app:destination="@id/tutorMainFragment"
-            app:popUpTo="@id/graph_nav"
-            app:popUpToInclusive="true" />
-        <action
             android:id="@+id/action_loginFragment_to_studentMainFragment"
             app:destination="@id/studentMainFragment"
-            app:popUpTo="@id/graph_nav"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/groupsFragment"
-        android:name="uz.jbnuu.tsc.ui.groups.GroupsFragment"
-        android:label="GroupsFragment"
-        tools:layout="@layout/group_fragment">
-        <action
-            android:id="@+id/action_groupsFragment_to_studentsFragment"
-            app:destination="@id/studentsFragment" />
-
-        <action
-            android:id="@+id/action_groupsFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_left"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/graph_nav"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/studentsFragment"
-        android:name="uz.jbnuu.tsc.ui.students.StudentsFragment"
-        android:label="StudentsFragment"
-        tools:layout="@layout/student_fragment">
-        <action
-            android:id="@+id/action_studentsFragment_to_locationHistoryFragment"
-            app:destination="@id/locationHistoryFragment" />
-        <action
-            android:id="@+id/action_studentsFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_right"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/graph_nav"
             app:popUpToInclusive="true" />
 
     </fragment>
+    <fragment
+        android:id="@+id/scheduleFragment"
+        android:name="uz.jbnuu.tsc.student.ui.schedule.ScheduleFragment"
+        android:label="SchedukeFragment"
+        tools:layout="@layout/schedule_fragment" />
     <fragment
         android:id="@+id/studentMainFragment"
-        android:name="uz.jbnuu.tsc.ui.student_main.StudentMainFragment"
+        android:name="uz.jbnuu.tsc.student.ui.student_main.StudentMainFragment"
         android:label="StudentMainFragment"
         tools:layout="@layout/student_main_fragment">
+
+        <action
+            android:id="@+id/action_studentMainFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
 
         <action
             android:id="@+id/action_studentMainFragment_to_loginFragment"
@@ -79,73 +48,36 @@
             app:popUpToInclusive="true" />
 
         <action
-            android:id="@+id/action_studentMainFragment_to_scheduleFragment"
-            app:destination="@id/scheduleFragment" />
-
-        <action
             android:id="@+id/action_studentMainFragment_to_performanceFragment"
             app:destination="@id/performanceFragment" />
 
         <action
+            android:id="@+id/action_studentMainFragment_to_deadlineFragment"
+            app:destination="@id/deadlineFragment" />
+
+        <action
             android:id="@+id/action_studentMainFragment_to_attendanceFragment"
             app:destination="@id/attendanceFragment" />
+        <action
+            android:id="@+id/action_studentMainFragment_to_examTableFragment"
+            app:destination="@id/examTableFragment" />
+        <action
+            android:id="@+id/action_studentMainFragment_to_referenceFragment"
+            app:destination="@id/referenceFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/locationHistoryFragment"
-        android:name="uz.jbnuu.tsc.ui.location_history.LocationHistoryFragment"
-        android:label="LocationHistoryFragment"
-        tools:layout="@layout/location_history_fragment">
-        <action
-            android:id="@+id/action_locationHistoryFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/graph_nav"
-            app:popUpToInclusive="true" />
-    </fragment>
-    <fragment
-        android:id="@+id/tutorMainFragment"
-        android:name="uz.jbnuu.tsc.ui.tutor.TutorMainFragment"
-        android:label="TutorMainFragment"
-        tools:layout="@layout/tutors_main_page">
 
-        <action
-            android:id="@+id/action_tutorMainFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:enterAnim="@anim/slide_in_left"
-            app:exitAnim="@anim/slide_out_left"
-            app:launchSingleTop="true"
-            app:popEnterAnim="@anim/slide_in_right"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpTo="@id/graph_nav"
-            app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_tutorMainFragment_to_groupsFragment"
-            app:destination="@id/groupsFragment" />
-
-        <action
-            android:id="@+id/action_tutorMainFragment_to_studentsFragment"
-            app:destination="@id/studentsFragment" />
-
-    </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="uz.jbnuu.tsc.ui.splash.SplashFragment"
+        android:name="uz.jbnuu.tsc.student.ui.splash.SplashFragment"
         android:label="SplashFragment"
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
-            app:popUpTo="@id/splashFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/graph_nav"
             app:popUpToInclusive="true" />
-        <action
-            android:id="@+id/action_splashFragment_to_tutorMainFragment"
-            app:destination="@id/tutorMainFragment"
-            app:popUpTo="@id/splashFragment"
-            app:popUpToInclusive="true" />
+
         <action
             android:id="@+id/action_splashFragment_to_adminFragment"
             app:destination="@id/adminFragment"
@@ -156,25 +88,36 @@
             app:destination="@id/studentMainFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+
     </fragment>
     <fragment
-        android:id="@+id/scheduleFragment"
-        android:name="uz.jbnuu.tsc.ui.timetable.ScheduleFragment"
-        android:label="SchedukeFragment"
-        tools:layout="@layout/schedule_fragment" />
-    <fragment
         android:id="@+id/attendanceFragment"
-        android:name="uz.jbnuu.tsc.ui.attendance.AttendanceFragment"
+        android:name="uz.jbnuu.tsc.student.ui.attendance.AttendanceFragment"
         android:label="AttendanceFragment"
         tools:layout="@layout/attendance_fragment" />
     <fragment
         android:id="@+id/performanceFragment"
-        android:name="uz.jbnuu.tsc.ui.performance.PerformanceFragment"
+        android:name="uz.jbnuu.tsc.student.ui.performance.PerformanceFragment"
         android:label="PerformanceFragment"
         tools:layout="@layout/performance_fragment" />
     <fragment
         android:id="@+id/adminFragment"
-        android:name="uz.jbnuu.tsc.base.AdminFragment"
+        android:name="uz.jbnuu.tsc.student.base.AdminFragment"
         android:label="AdminFragment"
         tools:layout="@layout/admin_fragment" />
+    <fragment
+        android:id="@+id/deadlineFragment"
+        android:name="uz.jbnuu.tsc.student.ui.deadlines.DeadlineFragment"
+        android:label="DeadlineFragment"
+        tools:layout="@layout/deadlines_fragment" />
+    <fragment
+        android:id="@+id/examTableFragment"
+        android:name="uz.jbnuu.tsc.student.ui.examTable.ExamTableFragment"
+        android:label="ExamTableFragment"
+        tools:layout="@layout/exam_table_fragment" />
+    <fragment
+        android:id="@+id/referenceFragment"
+        android:name="uz.jbnuu.tsc.student.ui.reference.ReferenceFragment"
+        android:label="ReferenceFragment"
+        tools:layout="@layout/reference_fragment" />
 </navigation>

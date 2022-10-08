@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item_back"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/cell_height"
+    android:background="@color/items_color_0">
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="@dimen/cell_height"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/deadline"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center_vertical"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textColor="@color/red"
+        android:textSize="12sp" />
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/subject_name"-->
+    <!--        android:layout_width="300dp"-->
+    <!--        android:layout_height="@dimen/cell_height"-->
+    <!--        android:background="@drawable/background_cell"-->
+    <!--        android:fontFamily="@font/montserrat_medium"-->
+    <!--        android:gravity="center_vertical"-->
+    <!--        android:padding="@dimen/small_margin"-->
+    <!--        android:singleLine="true"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="@dimen/small_text_size" />-->
+
+    <TextView
+        android:id="@+id/subject_name"
+        android:layout_width="300dp"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/type_training"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:id="@+id/downloadFile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="@dimen/small_margin">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/play_button_back"
+                android:padding="6dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_downloadsimple" />
+
+
+            <ProgressBar
+                android:id="@+id/pb_file"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/circle_shape"
+                android:indeterminateTint="@color/white"
+                android:max="100"
+                android:progress="0"
+                android:progressDrawable="@drawable/circle_progress_bar" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/default_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/title_content_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:fontFamily="@font/montserrat_medium"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/min_text_size"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/size_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/min_text_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--    <TextView-->
+    <!--        android:id="@+id/file_task"-->
+    <!--        android:layout_width="100dp"-->
+    <!--        android:layout_height="@dimen/cell_height"-->
+    <!--        android:background="@drawable/background_cell"-->
+    <!--        android:fontFamily="@font/montserrat_medium"-->
+    <!--        android:gravity="center"-->
+    <!--        android:padding="@dimen/small_margin"-->
+    <!--        android:singleLine="true"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        android:textSize="12sp" />-->
+
+    <TextView
+        android:id="@+id/teacher"
+        android:layout_width="150dp"
+        android:layout_height="@dimen/cell_height"
+        android:background="@drawable/background_cell"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center_vertical"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+</LinearLayout>
