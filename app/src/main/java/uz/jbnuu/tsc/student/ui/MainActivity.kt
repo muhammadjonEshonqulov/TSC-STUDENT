@@ -74,26 +74,6 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-//        val fetchConfiguration: FetchConfiguration = FetchConfiguration.Builder(this)
-//            .setDownloadConcurrentLimit(3)
-//            .build()
-//
-//        val fetch = getInstance(fetchConfiguration)
-//
-//        val url = "https://student.jbnuu.uz/rest/v1/student/reference-download?id=2159"
-//        val file = "/downloads/test.pdf"
-//
-//        val request = Request(url, file)
-//        request.priority = (Priority.HIGH)
-//        request.networkType = (com.tonyodev.fetch2.NetworkType.ALL)
-////        request.addHeader("Authorization", "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ2MVwvYXV0aFwvbG9naW4iLCJhdWQiOiJ2MVwvYXV0aFwvbG9naW4iLCJleHAiOjE2NjUxMTY5MzEsImp0aSI6IjQwMTIwMTEwMDAxMiIsInN1YiI6IjEyIn0.iF5jgbzyACU2wfOU1lEFu0SMkYuIzOpLeCWnJ8v_reE")
-//
-//        fetch.enqueue(request, { updatedRequest ->
-//            lg("Success $updatedRequest")
-//        }) { error ->
-//            lg("error Main ${error.name}")
-//        }
-
         if (appUpdateManager == null) {
             appUpdateManager = AppUpdateManagerFactory.create(this)
         }
@@ -459,7 +439,7 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
 //
 //                                                    }
                                                 } else {
-                                                    vm.insertCategoryData(SendLocationBody(currentDate, "" + it.latitude, "" + it.longitude))
+                                                    vm.insertSendLocationBody(SendLocationBody(currentDate, "" + it.latitude, "" + it.longitude))
                                                 }
                                             }
 

@@ -38,7 +38,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:911972201846:android:ec90d14c9af3cbc034b657",
         "android_client_info": {
-          "package_name": "uz.jbnuu.tsc"
+          "package_name": "uz.jbnuu.tsc.student"
         }
       },
       "oauth_client": [
@@ -46,7 +46,7 @@
           "client_id": "911972201846-4jumfj8vr57ia1obivd4bk8ibuv1mg3d.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "uz.jbnuu.tsc",
+            "package_name": "uz.jbnuu.tsc.student",
             "certificate_hash": "90a8f15241bfa41ec0a09deeb3d9b6f1baab915c"
           }
         },

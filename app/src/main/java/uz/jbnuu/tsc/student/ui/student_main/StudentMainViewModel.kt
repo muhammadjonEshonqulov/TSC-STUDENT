@@ -141,7 +141,7 @@ class StudentMainViewModel @Inject constructor(
         _taskDataResponse.send(repository.local.getTaskData().stateIn(this).value)
     }
 
-    fun insertCategoryData(data: SendLocationBody) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertSendLocationBody(data: SendLocationBody) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.insertSendLocationBody(data)
     }
 
