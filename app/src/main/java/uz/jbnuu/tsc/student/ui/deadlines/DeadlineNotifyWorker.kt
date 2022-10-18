@@ -2,9 +2,7 @@ package uz.jbnuu.tsc.student.ui.deadlines
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
@@ -33,16 +31,6 @@ class DeadlineNotifyWorker(appContext: Context, workerParams: WorkerParameters) 
     private fun showNotification(task: Task, message: String) {
 
         val bundle = bundleOf("task_id" toGo task.id)
-
-//        val notificationIntent = Intent(applicationContext, MainActivity::class.java)
-//        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER)
-//        notificationIntent.action = Intent.ACTION_MAIN
-//        notificationIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-
-//        val snoozeIntent = Intent(this, MyBroadcastReceiver::class.java).apply {
-//            action = ACTION_SNOOZE
-//            putExtra(EXTRA_NOTIFICATION_ID, 0)
-//        }
 
         val pendingIntent = NavDeepLinkBuilder(applicationContext)
             .setComponentName(MainActivity::class.java)
@@ -118,27 +106,23 @@ class DeadlineNotifyWorker(appContext: Context, workerParams: WorkerParameters) 
 
             if (currentYear == taskYear && currentMonth == taskMonth) {
                 if ((taskDay?.minus(currentDay) ?: 0) == 2) {
-                    showNotification(it, "2 kun vaqtingiz qoldi!")
+                    if (prefs.get("${it.id}_2_day", "") == "") {
+                        prefs.save("${it.id}_2_day", "${it.id}_2_day")
+                        showNotification(it, "2 kun vaqtingiz qoldi!")
+                    }
 
                 } else if ((taskDay?.minus(currentDay) ?: 0) == 1) {
-                    showNotification(it, "1 kun vaqtingiz qoldi. Bajaring!")
-
+                    if (prefs.get("${it.id}_1_day", "") == "") {
+                        prefs.save("${it.id}_1_day", "${it.id}_1_day")
+                        showNotification(it, "1 kun vaqtingiz qoldi. Bajaring!")
+                    }
                 } else if ((taskDay?.minus(currentDay) ?: 0) == 0) {
-                    if ((taskHour?.minus(currentHour) ?: 0) in 7..23) {
-                        showNotification(it, "${taskHour?.minus(currentHour)} soat vaqtingiz qoldi. Shoshiling!")
-                    } else if ((taskHour?.minus(currentHour) ?: 0) == 6) {
-                        showNotification(it, "6 soat vaqtingiz qoldi. Shoshiling!")
-
-                    } else if ((taskHour?.minus(currentHour) ?: 0) == 3) {
-                        showNotification(it, "3 soat vaqtingiz qoldi. Gazini bosing!")
-
-                    } else if ((taskHour?.minus(currentHour) ?: 0) == 2) {
-                        showNotification(it, "2 soat vaqtingiz qoldi. Gazini bosing!")
-
-                    } else if ((taskHour?.minus(currentHour) ?: 0) == 1) {
-                        showNotification(it, "1 soat vaqtingiz qoldi. Gazini bosing!")
-
-                    } else if ((taskMinute?.minus(currentMinute) ?: 0) in 10..50) {
+                    if ((taskHour?.minus(currentHour) ?: 0) in 1..23) {
+                        if (prefs.get("${it.id}_${taskHour?.minus(currentHour)}_hour", "") == "") {
+                            prefs.save("${it.id}_${taskHour?.minus(currentHour)}_hour", "${it.id}_${taskHour?.minus(currentHour)}_hour")
+                            showNotification(it, "${taskHour?.minus(currentHour)} soat vaqtingiz qoldi. Shoshiling!")
+                        }
+                    } else if ((taskMinute?.minus(currentMinute) ?: 0) in 1..59) {
                         showNotification(it, "${taskMinute?.minus(currentMinute)} minut vaqtingiz qoldi. Gazini bosing!")
                     }
                 }

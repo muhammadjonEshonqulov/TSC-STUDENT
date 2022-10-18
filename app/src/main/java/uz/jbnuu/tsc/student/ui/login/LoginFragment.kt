@@ -37,7 +37,6 @@ class LoginFragment : BaseFragment<LoginFragmentBinding>(LoginFragmentBinding::i
                 val password = binding.passwordAuth.text.toString()
                 if (login.isNotEmpty() && password.isNotEmpty()) {
                     loginStudent(LoginStudentBody(login, password))
-
                 } else {
                     if (login.isEmpty()) {
                         binding.loginAuth.error = "Loginingizni kiriting"

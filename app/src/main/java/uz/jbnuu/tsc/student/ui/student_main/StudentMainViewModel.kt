@@ -14,8 +14,8 @@ import uz.jbnuu.tsc.student.app.App
 import uz.jbnuu.tsc.student.data.Repository
 import uz.jbnuu.tsc.student.model.SubjectResponse
 import uz.jbnuu.tsc.student.model.login.LogoutResponse
+import uz.jbnuu.tsc.student.model.login.hemis.LoginHemisResponse
 import uz.jbnuu.tsc.student.model.login.student.LoginStudentBody
-import uz.jbnuu.tsc.student.model.login.student.LoginStudentResponse
 import uz.jbnuu.tsc.student.model.send_location.SendLocationArrayBody
 import uz.jbnuu.tsc.student.model.send_location.SendLocationBody
 import uz.jbnuu.tsc.student.model.send_location.SendLocationResponse
@@ -66,14 +66,14 @@ class StudentMainViewModel @Inject constructor(
         }
     }
 
-    private val _loginResponse = Channel<NetworkResult<LoginStudentResponse>>()
+    private val _loginResponse = Channel<NetworkResult<LoginHemisResponse>>()
     var loginResponse = _loginResponse.receiveAsFlow()
 
-    fun loginStudent(loginStudentBody: LoginStudentBody) = viewModelScope.launch {
+    fun loginHemis(loginStudentBody: LoginStudentBody) = viewModelScope.launch {
         _loginResponse.send(NetworkResult.Loading())
         if (hasInternetConnection(getApplication())) {
             try {
-                val response = repository.remote.loginStudent(loginStudentBody)
+                val response = repository.remote.loginHemis(loginStudentBody)
                 _loginResponse.send(handleResponse(response))
             } catch (e: Exception) {
                 _loginResponse.send(NetworkResult.Error("Xatolik : " + e.message))

@@ -46,22 +46,22 @@ class LoginViewModel @Inject constructor(
     }
 
 
-    private val _loginHemisResponse = Channel<NetworkResult<LoginHemisResponse>>()
-    var loginHemisResponse = _loginHemisResponse.receiveAsFlow()
-
-    fun loginHemis(loginHemisBody: LoginStudentBody) = viewModelScope.launch {
-        _loginHemisResponse.send(NetworkResult.Loading())
-        if (hasInternetConnection(getApplication())) {
-            try {
-                val response = repository.remote.loginHemis(loginHemisBody)
-                _loginHemisResponse.send(handleResponse(response))
-            } catch (e: Exception) {
-                _loginHemisResponse.send(NetworkResult.Error("Xatolik : " + e.message))
-            }
-        } else {
-            _loginHemisResponse.send(NetworkResult.Error(App.context.getString(R.string.connection_error)))
-        }
-    }
+//    private val _loginHemisResponse = Channel<NetworkResult<LoginHemisResponse>>()
+//    var loginHemisResponse = _loginHemisResponse.receiveAsFlow()
+//
+//    fun loginHemis(loginHemisBody: LoginStudentBody) = viewModelScope.launch {
+//        _loginHemisResponse.send(NetworkResult.Loading())
+//        if (hasInternetConnection(getApplication())) {
+//            try {
+//                val response = repository.remote.loginHemis(loginHemisBody)
+//                _loginHemisResponse.send(handleResponse(response))
+//            } catch (e: Exception) {
+//                _loginHemisResponse.send(NetworkResult.Error("Xatolik : " + e.message))
+//            }
+//        } else {
+//            _loginHemisResponse.send(NetworkResult.Error(App.context.getString(R.string.connection_error)))
+//        }
+//    }
 
     private val _meHemisResponse = Channel<NetworkResult<MeResponse>>()
     var meHemisResponse = _meHemisResponse.receiveAsFlow()

@@ -52,7 +52,6 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
             sendDataToActivity?.send("Deadline")
             sendDataToActivity?.send("Start")
 
-
         } catch (e: ClassCastException) {
             throw ClassCastException("$activity error")
         }
@@ -98,11 +97,6 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
     override fun onPause() {
         super.onPause()
         binding.drawer.closeDrawer(GravityCompat.START)
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        snackBar(binding, "back")
     }
 
     override fun onClick(p0: View?) {

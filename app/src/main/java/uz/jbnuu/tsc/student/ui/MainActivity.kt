@@ -324,8 +324,8 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
     }
 
     private fun navigateToLogin() {
-        val navControl = findNavController(R.id.nav_host_fragment)
         cancelAllWork()
+        val navControl = findNavController(R.id.nav_host_fragment)
         vm.clearTaskData()
         vm.clearSendLocationBodyData()
         prefs.clear()
@@ -414,8 +414,8 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
                             time = (timeTest - millisUntilFinished).toInt() / 1000
                             if (time == 2) {
                                 if (checkPermission()) {
-                                    fusedLocationProviderClient = FusedLocationProviderClient(this@MainActivity)
-                                    fusedLocationProviderClient.lastLocation.addOnSuccessListener {
+                                    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@MainActivity)// FusedLocationProviderClient(this@MainActivity)
+                                    fusedLocationProviderClient.lastLocation.addOnCompleteListener {
                                         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                                         val currentDate = sdf.format(Date())
                                         try {
@@ -432,14 +432,16 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
                                                         }
                                                     }
 //                                                    if (prefs.get(prefs.role, 0) == 4) {
-                                                    sendLocation(SendLocationBody(currentDate, "" + it.latitude, "" + it.longitude))
+                                                    lg("latitude->" + it.result.latitude)
+                                                    lg("longitude->" + it.result.longitude)
+                                                    sendLocation(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
 //                                                    } else if (prefs.get(prefs.role, 0) == 2) {
-//                                                        sendLocation1(SendLocationBody(currentDate, "" + it.latitude, "" + it.longitude))
+//                                                        sendLocation1(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
 //                                                    } else {
 //
 //                                                    }
                                                 } else {
-                                                    vm.insertSendLocationBody(SendLocationBody(currentDate, "" + it.latitude, "" + it.longitude))
+                                                    vm.insertSendLocationBody(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
                                                 }
                                             }
 

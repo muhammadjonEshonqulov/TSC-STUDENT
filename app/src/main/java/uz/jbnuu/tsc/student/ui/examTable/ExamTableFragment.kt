@@ -39,6 +39,8 @@ class ExamTableFragment : BaseFragment<ExamTableFragmentBinding>(ExamTableFragme
     override fun onViewCreatedd(view: View, savedInstanceState: Bundle?) {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setupRecycler()
+        binding.swipeRefreshLayout.isRefreshing = false
+        binding.swipeRefreshLayout.isEnabled = false
         binding.backBtn.setOnClickListener {
             finish()
         }
