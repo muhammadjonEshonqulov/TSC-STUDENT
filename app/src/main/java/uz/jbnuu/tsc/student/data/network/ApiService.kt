@@ -4,6 +4,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.*
 import uz.jbnuu.tsc.student.model.SubjectResponse
+import uz.jbnuu.tsc.student.model.activeTime.ActiveTimeResponse
 import uz.jbnuu.tsc.student.model.attendance.AttendanceResponse
 import uz.jbnuu.tsc.student.model.examTable.ExamTableResponse
 import uz.jbnuu.tsc.student.model.login.LogoutResponse
@@ -50,6 +51,9 @@ interface ApiService {
 
     @GET("education/subjects")
     suspend fun subjects(): Response<SubjectsResponse>
+
+    @GET("get_active_time")
+    suspend fun getActiveTime(): Response<ActiveTimeResponse>
 
     @GET("education/subject")
     suspend fun subject(@Query("subject") subject: Int?, @Query("semester") semester: String): Response<SubjectResponse>

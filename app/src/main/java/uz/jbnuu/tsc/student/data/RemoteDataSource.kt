@@ -4,6 +4,7 @@ import okhttp3.ResponseBody
 import retrofit2.Response
 import uz.jbnuu.tsc.student.data.network.ApiService
 import uz.jbnuu.tsc.student.model.SubjectResponse
+import uz.jbnuu.tsc.student.model.activeTime.ActiveTimeResponse
 import uz.jbnuu.tsc.student.model.attendance.AttendanceResponse
 import uz.jbnuu.tsc.student.model.examTable.ExamTableResponse
 import uz.jbnuu.tsc.student.model.login.LogoutResponse
@@ -51,6 +52,10 @@ class RemoteDataSource @Inject constructor(@Named("provideApiService") val apiSe
 
     suspend fun subjects(): Response<SubjectsResponse> {
         return apiServiceHemis.subjects()
+    }
+
+    suspend fun getActiveTime(): Response<ActiveTimeResponse> {
+        return apiService.getActiveTime()
     }
 
     suspend fun subject(subject: Int?, semester: String): Response<SubjectResponse> {

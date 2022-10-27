@@ -11,6 +11,7 @@ import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -23,10 +24,7 @@ import uz.jbnuu.tsc.student.base.ProgressDialog
 import uz.jbnuu.tsc.student.databinding.HeaderLayoutBinding
 import uz.jbnuu.tsc.student.databinding.StudentMainFragmentBinding
 import uz.jbnuu.tsc.student.ui.SendDataToActivity
-import uz.jbnuu.tsc.student.utils.NetworkResult
-import uz.jbnuu.tsc.student.utils.Prefs
-import uz.jbnuu.tsc.student.utils.collectLA
-import uz.jbnuu.tsc.student.utils.navigateSafe
+import uz.jbnuu.tsc.student.utils.*
 import javax.inject.Inject
 
 
@@ -45,15 +43,43 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
     @Inject
     lateinit var prefs: Prefs
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getActiveTime()
+
+    }
+
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)
         try {
             sendDataToActivity = activity as SendDataToActivity
             sendDataToActivity?.send("Deadline")
-            sendDataToActivity?.send("Start")
 
         } catch (e: ClassCastException) {
             throw ClassCastException("$activity error")
+        }
+    }
+
+    private fun getActiveTime() {
+        vm.getActiveTime()
+        vm.getActiveTimeResponse.collectLatestLA(lifecycleScope) {
+            when (it) {
+                is NetworkResult.Success -> {
+                    it.data?.allow?.let {
+                        if (!it) {
+                            sendDataToActivity?.send("Start")
+                        }
+                    }
+                }
+                is NetworkResult.Error -> {
+                    if (it.code == 401) {
+                        findNavController().navigateSafe(R.id.action_studentMainFragment_to_loginFragment)
+                    }
+                }
+                is NetworkResult.Loading -> {
+
+                }
+            }
         }
     }
 

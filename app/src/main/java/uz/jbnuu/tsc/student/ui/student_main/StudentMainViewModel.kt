@@ -13,6 +13,7 @@ import uz.jbnuu.tsc.student.R
 import uz.jbnuu.tsc.student.app.App
 import uz.jbnuu.tsc.student.data.Repository
 import uz.jbnuu.tsc.student.model.SubjectResponse
+import uz.jbnuu.tsc.student.model.activeTime.ActiveTimeResponse
 import uz.jbnuu.tsc.student.model.login.LogoutResponse
 import uz.jbnuu.tsc.student.model.login.hemis.LoginHemisResponse
 import uz.jbnuu.tsc.student.model.login.student.LoginStudentBody
@@ -131,6 +132,23 @@ class StudentMainViewModel @Inject constructor(
             }
         } else {
             _subjectResponse.send(NetworkResult.Error(App.context.getString(R.string.connection_error)))
+        }
+    }
+
+    private val _getActiveTimeResponse = Channel<NetworkResult<ActiveTimeResponse>>()
+    var getActiveTimeResponse = _getActiveTimeResponse.receiveAsFlow()
+
+    fun getActiveTime() = viewModelScope.launch {
+        _getActiveTimeResponse.send(NetworkResult.Loading())
+        if (hasInternetConnection(getApplication())) {
+            try {
+                val response = repository.remote.getActiveTime()
+                _getActiveTimeResponse.send(handleResponse(response))
+            } catch (e: Exception) {
+                _getActiveTimeResponse.send(NetworkResult.Error("Xatolik : " + e.message))
+            }
+        } else {
+            _getActiveTimeResponse.send(NetworkResult.Error(App.context.getString(R.string.connection_error)))
         }
     }
 

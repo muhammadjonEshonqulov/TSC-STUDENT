@@ -209,6 +209,8 @@
                         android:id="@+id/list_performance"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        tools:listitem="@layout/item_performance"
+                        tools:itemCount="10"
                         android:layout_marginStart="@dimen/small_margin"
                         android:layout_marginEnd="@dimen/small_margin" />
 

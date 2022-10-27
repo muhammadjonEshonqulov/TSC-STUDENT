@@ -9,7 +9,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -132,14 +131,14 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
                 appUpdateManager?.registerListener(listener)
                 appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this, MYREQUESTCODE)
             } else {
-                lg("No Update available")
+                // lg("No Update available")
             }
         }
     }
 
     private val listener: InstallStateUpdatedListener = InstallStateUpdatedListener { installState ->
         if (installState.installStatus() == InstallStatus.DOWNLOADED) {
-            lg("An update has been downloaded")
+            // lg("An update has been downloaded")
             showSnackBarForCompleteUpdate()
         }
     }
@@ -187,14 +186,14 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
             MYREQUESTCODE -> {
                 when (resultCode) {
                     Activity.RESULT_OK -> {
-                        lg("" + "Result Ok")
+                        // lg("" + "Result Ok")
                     }
                     Activity.RESULT_CANCELED -> {
-                        lg("" + "Result Cancelled")
+                        // lg("" + "Result Cancelled")
                         checkUpdate()
                     }
                     ActivityResult.RESULT_IN_APP_UPDATE_FAILED -> {
-                        lg("" + "Update Failure")
+                        // lg("" + "Update Failure")
                         checkUpdate()
 
                     }
@@ -233,7 +232,8 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     turnOnLocation()
                 } else {
-                    Toast.makeText(this@MainActivity, "Permission denied", Toast.LENGTH_SHORT).show()
+                    snackBar(binding, "Permission denied")
+//                    checkPermission()
                 }
                 return
             }
@@ -281,6 +281,10 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         }
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return super.onSupportNavigateUp()
+
+    }
 
     private fun sendLocation(sendLocationBody: SendLocationBody) {
         vm.sendLocation(sendLocationBody)
@@ -364,30 +368,110 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         }
     }
 
+//    private fun getActiveTime() {
+//        vm.getActiveTime()
+//        vm.getActiveTimeResponse.collectLatestLA(lifecycleScope) {
+//            when (it) {
+//                is NetworkResult.Success -> {
+//                    it.data?.allow?.let {
+//                        if (!it) {
+//                            sendLocationFunction()
+//                        } else {
+//                            timer?.cancel()
+//                        }
+//                    }
+//                }
+//                is NetworkResult.Error -> {
+//                    if (it.code == 401) {
+//                        navigateToLogin()
+//                    }
+//                }
+//                is NetworkResult.Loading -> {
+//
+//                }
+//            }
+//        }
+//    }
+
+    private fun sendLocationFunction() {
+        if (timer == null) {
+            timer = object : CountDownTimer(timeTest, 1000) {
+                var time = 0
+
+                @SuppressLint("SetTextI18n", "VisibleForTests", "SimpleDateFormat")
+                override fun onTick(millisUntilFinished: Long) {
+                    if (prefs.get(prefs.loginStop, 0) == 1) {
+                        cancel()
+                    } else {
+                        time = (timeTest - millisUntilFinished).toInt() / 1000
+                        if (time == 2) {
+                            if (checkPermission()) {
+                                fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@MainActivity)// FusedLocationProviderClient(this@MainActivity)
+                                fusedLocationProviderClient.lastLocation.addOnCompleteListener {
+                                    val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                                    val currentDate = sdf.format(Date())
+                                    try {
+                                        application?.let { appl ->
+                                            if (hasInternetConnection(appl)) {
+                                                vm.getSendLocationBodyData()
+                                                vm.getSendLocationsResponse.collectLA(lifecycleScope) { sendLocations ->
+                                                    if (sendLocations.isNotEmpty()) {
+                                                        sendLocationArray(SendLocationArrayBody(sendLocations))
+                                                    }
+                                                }
+                                                sendLocation(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
+                                            } else {
+                                                vm.insertSendLocationBody(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
+                                            }
+                                        }
+
+                                    } catch (e: NullPointerException) {
+                                        turnOnLocation()
+                                    }
+                                }
+                            } else {
+                                cancel()
+                            }
+                        }
+                    }
+                }
+
+                @SuppressLint("SimpleDateFormat")
+                override fun onFinish() {
+                    cancel()
+                    start()
+                }
+            }
+        }
+        if (checkPermission()) {
+            timer?.start()
+        }
+    }
+
     private fun subject(subject: Int?, semester: String) {
         vm.subject(subject, semester)
         vm.subjectResponse.collectLatestLA(lifecycleScope) {
             when (it) {
                 is NetworkResult.Success -> {
-                    lg("subject 2 ")
+                    // lg("subject 2 ")
 
                     if (subjectTasks == null) {
                         subjectTasks = ArrayList()
                     }
 
                     it.data?.data?.tasks?.let { tasks ->
-                        lg("tasks -> " + tasks.size)
+                        // lg("tasks -> " + tasks.size)
                         val status = vm.insertTaskData(tasks)
-                        lg("status isCancelled -> " + status.isCancelled)
-                        lg("status isActive -> " + status.isActive)
-                        lg("status isCompleted -> " + status.isCompleted)
+                        // lg("status isCancelled -> " + status.isCancelled)
+                        // lg("status isActive -> " + status.isActive)
+                        // lg("status isCompleted -> " + status.isCompleted)
                     }
                 }
                 is NetworkResult.Error -> {
                     if (it.code == 401) {
                         navigateToLogin()
                     } else {
-                        lg("error get subject ->" + it.message.toString())
+                        // lg("error get subject ->" + it.message.toString())
                     }
                 }
                 is NetworkResult.Loading -> {
@@ -401,71 +485,7 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         if (value == "Deadline") {
             subjects()
         } else if (value == "Start") {
-            if (timer == null) {
-                timer = object : CountDownTimer(timeTest, 1000) {
-                    var time = 0
-
-                    @SuppressLint("SetTextI18n", "VisibleForTests", "SimpleDateFormat")
-                    override fun onTick(millisUntilFinished: Long) {
-                        if (prefs.get(prefs.loginStop, 0) == 1) {
-                            cancel()
-
-                        } else {
-                            time = (timeTest - millisUntilFinished).toInt() / 1000
-                            if (time == 2) {
-                                if (checkPermission()) {
-                                    fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this@MainActivity)// FusedLocationProviderClient(this@MainActivity)
-                                    fusedLocationProviderClient.lastLocation.addOnCompleteListener {
-                                        val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
-                                        val currentDate = sdf.format(Date())
-                                        try {
-                                            application?.let { appl ->
-                                                if (hasInternetConnection(appl)) {
-                                                    vm.getSendLocationBodyData()
-                                                    vm.getSendLocationsResponse.collectLA(lifecycleScope) { sendLocations ->
-                                                        if (sendLocations.isNotEmpty()) {
-//                                                            if (prefs.get(prefs.role, 0) == 4) {
-                                                            sendLocationArray(SendLocationArrayBody(sendLocations))
-//                                                            } else if (prefs.get(prefs.role, 0) == 2) {
-//                                                                sendLocationArray1(SendLocationArrayBody(sendLocations))
-//                                                            }
-                                                        }
-                                                    }
-//                                                    if (prefs.get(prefs.role, 0) == 4) {
-                                                    lg("latitude->" + it.result.latitude)
-                                                    lg("longitude->" + it.result.longitude)
-                                                    sendLocation(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
-//                                                    } else if (prefs.get(prefs.role, 0) == 2) {
-//                                                        sendLocation1(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
-//                                                    } else {
-//
-//                                                    }
-                                                } else {
-                                                    vm.insertSendLocationBody(SendLocationBody(currentDate, "" + it.result.latitude, "" + it.result.longitude))
-                                                }
-                                            }
-
-                                        } catch (e: NullPointerException) {
-                                            turnOnLocation()
-                                        }
-                                    }
-                                } else {
-                                    cancel()
-                                }
-                            }
-                        }
-                    }
-
-                    @SuppressLint("SimpleDateFormat")
-                    override fun onFinish() {
-                        cancel()
-                        start()
-                    }
-                }
-            }
-            if (checkPermission()) {
-                timer?.start()
-            }
+            sendLocationFunction()
         } else if (value == "Stop") {
             timer?.cancel()
         }
