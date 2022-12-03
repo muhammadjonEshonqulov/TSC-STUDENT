@@ -39,7 +39,6 @@ class DeadlineNotifyWorker(appContext: Context, workerParams: WorkerParameters) 
             .setDestination(R.id.deadlineFragment)
             .createPendingIntent()
 
-
         val notification = NotificationCompat.Builder(applicationContext, CHANNEL_ID_TSC)
             .setSmallIcon(R.drawable.ic_baseline_notifications_active_24)
             .setContentTitle("" + task.subject?.name?.get(0)?.uppercase() + task.subject?.name?.substring(1)?.lowercase())
@@ -104,7 +103,7 @@ class DeadlineNotifyWorker(appContext: Context, workerParams: WorkerParameters) 
             val taskHour = getDateTime(it.deadline)?.split(" ")?.last()?.split(":")?.first()?.toInt()
             val taskMinute = getDateTime(it.deadline)?.split(" ")?.last()?.split(":")?.last()?.toInt()
 
-            if (currentYear == taskYear && currentMonth == taskMonth) {
+            if (currentYear == taskYear && currentMonth == taskMonth && it.studentTaskActivity == null) {
                 if ((taskDay?.minus(currentDay) ?: 0) == 2) {
                     if (prefs.get("${it.id}_2_day", "") == "") {
                         prefs.save("${it.id}_2_day", "${it.id}_2_day")

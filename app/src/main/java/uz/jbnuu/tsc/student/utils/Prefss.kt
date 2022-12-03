@@ -25,6 +25,7 @@ class Prefs @Inject constructor(context: Context) {
 //    val tutorLogin = "tutorLogin"
 //    val tutorPassword = "tutorPassword"
     val hemisToken = "hemisToken"
+    val getActiveTime = "getActiveTime"
     val fam = "fam"
     val name = "name"
     val loginStop = "loginStop"

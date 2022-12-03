@@ -5,17 +5,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import uz.jbnuu.tsc.student.R
 import uz.jbnuu.tsc.student.app.App
 import uz.jbnuu.tsc.student.data.Repository
-import uz.jbnuu.tsc.student.model.login.admin.AdminResponse
-import uz.jbnuu.tsc.student.model.login.hemis.LoginHemisResponse
 import uz.jbnuu.tsc.student.model.login.student.LoginStudentBody
 import uz.jbnuu.tsc.student.model.login.student.LoginStudentResponse
-import uz.jbnuu.tsc.student.model.login.tyuter.LoginTyuterBody
-import uz.jbnuu.tsc.student.model.login.tyuter.LoginTyuterResponse
 import uz.jbnuu.tsc.student.model.me.MeResponse
 import uz.jbnuu.tsc.student.utils.NetworkResult
 import uz.jbnuu.tsc.student.utils.handleResponse
@@ -88,4 +86,9 @@ class LoginViewModel @Inject constructor(
 //    private fun clearProductsData() = viewModelScope.launch {
 //        repository.local.clearProductsData()
 //    }
+
+    private val _state = MutableStateFlow(LoginState())
+    val state = _state.asStateFlow()
 }
+
+class LoginState

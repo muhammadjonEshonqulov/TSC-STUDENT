@@ -47,6 +47,13 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
         super.onCreate(savedInstanceState)
         getActiveTime()
 
+//        lg("Date->"+System.currentTimeMillis() / 1000L)
+//        lg("LocalDate->"+LocalDate.now())
+//        lg("LocalDateTime->"+LocalDateTime.now())
+//        lg("LocalDateTime->"+Date().time)
+//
+//        1667544490984
+//        1671833100000
     }
 
     override fun onAttach(activity: Activity) {
@@ -66,6 +73,7 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
             when (it) {
                 is NetworkResult.Success -> {
                     it.data?.allow?.let {
+                        prefs.save(prefs.getActiveTime, it)
                         if (!it) {
                             sendDataToActivity?.send("Start")
                         }
@@ -93,9 +101,15 @@ class StudentMainFragment : BaseFragment<StudentMainFragmentBinding>(StudentMain
             LayoutInflater.from(requireContext()).inflate(R.layout.header_layout, null, false)
         )
         binding.navView.addHeaderView(bindNavHeader.root)
-        bindNavHeader.userNameHeader.text =
-            prefs.get(prefs.fam, " ") + " " + prefs.get(prefs.name, "")
+        bindNavHeader.userNameHeader.text = prefs.get(prefs.fam, " ") + " " + prefs.get(prefs.name, "")
         bindNavHeader.organizationUserHeader.text = prefs.get(prefs.group, "") + " guruh"
+
+        prefs.get(prefs.image, "").let {
+            Glide.with(requireContext())
+                .load(it)
+                .placeholder(R.drawable.logo_main)
+                .into(binding.person)
+        }
 
         prefs.get(prefs.image, "").let {
             Glide.with(requireContext())

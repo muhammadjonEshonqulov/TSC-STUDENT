@@ -59,6 +59,20 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="@dimen/small_margin"
+            android:background="@drawable/back_edittext">
+
+            <Spinner
+                android:id="@+id/spinner_organization"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:paddingStart="@dimen/small_margin" />
+
+        </FrameLayout>
+
         <HorizontalScrollView
             android:id="@+id/list_performance_lay"
             android:layout_width="match_parent"
@@ -180,7 +194,7 @@
                     android:paddingTop="@dimen/default_margin"
                     android:paddingEnd="@dimen/left_right_margin_size"
                     android:paddingBottom="@dimen/default_margin"
-                    android:text="Ushbu davrga ma'lumot mavjud emas."
+                    android:text="Ma'lumot mavjud emas."
                     android:textColor="@color/white"
                     android:visibility="visible" />
             </androidx.cardview.widget.CardView>

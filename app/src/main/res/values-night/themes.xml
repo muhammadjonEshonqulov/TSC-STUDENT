@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Truck" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.TSC_STUDENT" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/cl_color_primary</item>
         <item name="colorPrimaryVariant">@color/cl_color_primary_dark</item>

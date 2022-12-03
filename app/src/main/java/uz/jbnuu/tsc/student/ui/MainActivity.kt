@@ -91,6 +91,17 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         vm.getTaskData()
         vm.taskDataResponse.collectLatestLA(lifecycleScope) {
             if (it.isNotEmpty()) {
+                val currentTimeStamp = System.currentTimeMillis() / 1000L
+
+                val tasks = ArrayList<uz.jbnuu.tsc.student.model.subjects.Task>()
+                tasks.clear()
+                it.forEach { task ->
+                    task.deadline?.let {
+                        if (currentTimeStamp > it && task.studentTaskActivity == null) {
+                            tasks.add(task)
+                        }
+                    }
+                }
                 // cancelAllWork()
                 myWorkManager(it)
             }
@@ -217,7 +228,7 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
                 appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, MYREQUESTCODE)
             }
         }
-        if (prefs.get(prefs.token, "") != "" && prefs.get(prefs.token, "") != "") {
+        if (prefs.get(prefs.token, "") != "" && prefs.get(prefs.token, "") != "" && !prefs.get(prefs.getActiveTime, true)) {
             send("Start")
         }
     }
@@ -230,7 +241,7 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
         when (requestCode) {
             LOCATION_REQUEST_CODE -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    turnOnLocation()
+                    // turnOnLocation()
                 } else {
                     snackBar(binding, "Permission denied")
 //                    checkPermission()
@@ -279,11 +290,6 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
             task = null
             locationSettingsRequestBuilder = null
         }
-    }
-
-    override fun onSupportNavigateUp(): Boolean {
-        return super.onSupportNavigateUp()
-
     }
 
     private fun sendLocation(sendLocationBody: SendLocationBody) {
