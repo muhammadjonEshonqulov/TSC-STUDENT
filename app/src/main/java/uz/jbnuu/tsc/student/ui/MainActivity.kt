@@ -138,11 +138,12 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
     private fun checkUpdate() {
         val appUpdateInfoTask = appUpdateManager?.appUpdateInfo
         appUpdateInfoTask?.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
+            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) { // && appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)
                 appUpdateManager?.registerListener(listener)
-                appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this, MYREQUESTCODE)
-            } else {
-                // lg("No Update available")
+                if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE))
+                    appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.FLEXIBLE, this, MYREQUESTCODE)
+                else if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE))
+                    appUpdateManager?.startUpdateFlowForResult(appUpdateInfo, AppUpdateType.IMMEDIATE, this, MYREQUESTCODE)
             }
         }
     }
