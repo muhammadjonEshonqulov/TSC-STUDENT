@@ -128,6 +128,15 @@ fun Int.getDuration(): String {
     return "$h:$m"
 }
 
+fun getDateTime(s: Long): String? {
+    return try {
+        val sdf = SimpleDateFormat("dd-MM-yyyy")
+        val netDate = Date(s * 1000)
+        sdf.format(netDate)
+    } catch (e: Exception) {
+        e.toString()
+    }
+}
 @SuppressLint("SimpleDateFormat")
 fun Int.getDate(): String {
     val c: Calendar = GregorianCalendar()

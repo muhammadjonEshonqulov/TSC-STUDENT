@@ -10,6 +10,7 @@ import uz.jbnuu.tsc.student.R
 import uz.jbnuu.tsc.student.databinding.ItemAttendanceBinding
 import uz.jbnuu.tsc.student.model.attendance.AttendanceData
 import uz.jbnuu.tsc.student.utils.MyDiffUtil
+import uz.jbnuu.tsc.student.utils.getDateTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -76,13 +77,5 @@ class AttendanceAdapter(val listener: OnItemClickListener) : RecyclerView.Adapte
         }
     }
 
-    private fun getDateTime(s: Long): String? {
-        return try {
-            val sdf = SimpleDateFormat("dd-MM-yyyy")
-            val netDate = Date(s * 1000)
-            sdf.format(netDate)
-        } catch (e: Exception) {
-            e.toString()
-        }
-    }
+
 }
