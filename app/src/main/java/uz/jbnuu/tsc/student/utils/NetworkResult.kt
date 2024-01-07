@@ -45,9 +45,9 @@ fun <T> handleResponse(response: Response<T>): NetworkResult<T> {
         response.message().toString().contains("timeout") -> {
             return NetworkResult.Error("Timeout.")
         }
-        response.code() == 401 -> {
-            return NetworkResult.Error("Login yoki parol noto'g'ri kiritildi", code = 401)
-        }
+//        response.code() == 401 -> {
+//            return NetworkResult.Error("Login yoki parol noto'g'ri kiritildi", code = 401)
+//        }
         response.code() == 404 -> {
             return NetworkResult.Error("Not found", code = 404)
         }

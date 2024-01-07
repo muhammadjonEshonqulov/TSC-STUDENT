@@ -336,14 +336,14 @@ class MainActivity : AppCompatActivity(), SendDataToActivity {
 
     private fun navigateToLogin() {
         cancelAllWork()
-        val navControl = findNavController(R.id.nav_host_fragment)
-        vm.clearTaskData()
-        vm.clearSendLocationBodyData()
-        prefs.clear()
-        send("Stop")
-        if (navControl.navigateUp()) {
-            navControl.navigate(R.id.loginFragment)
-        }
+//        val navControl = findNavController(R.id.nav_host_fragment)
+//        vm.clearTaskData()
+//        vm.clearSendLocationBodyData()
+//        prefs.clear()
+//        send("Stop")
+//        if (navControl.navigateUp()) {
+//            navControl.navigate(R.id.loginFragment)
+//        }
     }
 
     private fun subjects() {

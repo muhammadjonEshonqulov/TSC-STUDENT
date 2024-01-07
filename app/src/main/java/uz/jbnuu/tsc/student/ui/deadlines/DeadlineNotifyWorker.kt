@@ -88,7 +88,6 @@ class DeadlineNotifyWorker(appContext: Context, workerParams: WorkerParameters) 
 
         val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm")
         val currentDate = sdf.format(Date())
-        lg("currentDate-> $currentDate")
 
         deadlines.forEach {
             val currentDay = currentDate.split(" ").first().split("-").last().toInt()
